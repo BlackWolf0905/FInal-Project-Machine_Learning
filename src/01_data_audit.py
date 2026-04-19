@@ -44,7 +44,11 @@ def audit_df(name, df):
     print(df.head(3))
 
     print("\nNumeric summary:")
-    print(df.describe(include=["number"]).T)
+    num_cols = df.select_dtypes(include=["number"]).columns
+    if len(num_cols) > 0:
+        print(df[num_cols].describe().T)
+    else:
+        print("No numeric columns.")
 
     print("\nCategorical summary:")
     cat_cols = df.select_dtypes(include="object").columns
