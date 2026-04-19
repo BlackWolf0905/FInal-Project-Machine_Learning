@@ -1,0 +1,151 @@
+product_id,product_name,category,sub_category,brand,base_price
+P0001,Điện thoại_1,Điện tử,Điện thoại,Panasonic,11422000.0
+P0002,Điện thoại_2,Điện tử,Điện thoại,Apple,10310000.0
+P0003,Điện thoại_3,Điện tử,Điện thoại,Xiaomi,9410000.0
+P0004,Điện thoại_4,Điện tử,Điện thoại,Sony,4961000.0
+P0005,Điện thoại_5,Điện tử,Điện thoại,Anker,6239000.0
+P0006,Laptop_6,Điện tử,Laptop,Sony,23062000.0
+P0007,Laptop_7,Điện tử,Laptop,Samsung,13039000.0
+P0008,Laptop_8,Điện tử,Laptop,Samsung,25711000.0
+P0009,Laptop_9,Điện tử,Laptop,Anker,13890000.0
+P0010,Laptop_10,Điện tử,Laptop,Sony,28089000.0
+P0011,Laptop_11,Điện tử,Laptop,,12678000.0
+P0012,Laptop_12,Điện tử,Laptop,Baseus,16704000.0
+P0013,Laptop_13,Điện tử,Laptop,Baseus,11143000.0
+P0014,Laptop_14,Điện tử,Laptop,Xiaomi,13426000.0
+P0015,Phụ kiện_15,Điện tử,Phụ kiện,Panasonic,1507000.0
+P0016,Phụ kiện_16,Điện tử,Phụ kiện,Anker,1801000.0
+P0017,Phụ kiện_17,Điện tử,Phụ kiện,Anker,756000.0
+P0018,Phụ kiện_18,Điện tử,Phụ kiện,Xiaomi,1044000.0
+P0019,Phụ kiện_19,Điện tử,Phụ kiện,Apple,1524000.0
+P0020,Phụ kiện_20,Điện tử,Phụ kiện,Apple,348000.0
+P0021,Phụ kiện_21,Điện tử,Phụ kiện,Xiaomi,1595000.0
+P0022,Phụ kiện_22,Điện tử,Phụ kiện,Anker,1213000.0
+P0023,Tablet_23,Điện tử,Tablet,Anker,11938000.0
+P0024,Tablet_24,Điện tử,Tablet,Baseus,10937000.0
+P0025,Tablet_25,Điện tử,Tablet,Samsung,13204000.0
+P0026,Tablet_26,Điện tử,Tablet,Apple,13226000.0
+P0027,Tablet_27,Điện tử,Tablet,Panasonic,14529000.0
+P0028,Tablet_28,Điện tử,Tablet,LG,4673000.0
+P0029,Tablet_29,Điện tử,Tablet,Anker,5372000.0
+P0030,Tai nghe_30,Điện tử,Tai nghe,,4862000.0
+P0031,Tai nghe_31,Điện tử,Tai nghe,Xiaomi,2588000.0
+P0032,Tai nghe_32,Điện tử,Tai nghe,Apple,4366000.0
+P0033,Tai nghe_33,Điện tử,Tai nghe,Panasonic,4224000.0
+P0034,Áo_34,Thời trang,Áo,Adidas,419000.0
+P0035,Áo_35,Thời trang,Áo,H&M,1179000.0
+P0036,Áo_36,Thời trang,Áo,Adidas,1437000.0
+P0037,Áo_37,Thời trang,Áo,Adidas,1390000.0
+P0038,Áo_38,Thời trang,Áo,Adidas,588000.0
+P0039,Áo_39,Thời trang,Áo,Uniqlo,301000.0
+P0040,Áo_40,Thời trang,Áo,H&M,1336000.0
+P0041,Áo_41,Thời trang,Áo,H&M,473000.0
+P0042,Quần_42,Thời trang,Quần,Adidas,1715000.0
+P0043,Quần_43,Thời trang,Quần,,1371000.0
+P0044,Quần_44,Thời trang,Quần,Uniqlo,1765000.0
+P0045,Quần_45,Thời trang,Quần,Adidas,1425000.0
+P0046,Quần_46,Thời trang,Quần,Zara,1256000.0
+P0047,Giày_47,Thời trang,Giày,Zara,1281000.0
+P0048,Giày_48,Thời trang,Giày,Adidas,1866000.0
+P0049,Giày_49,Thời trang,Giày,Zara,3737000.0
+P0050,Giày_50,Thời trang,Giày,Local Brand,2853000.0
+P0051,Giày_51,Thời trang,Giày,Local Brand,1453000.0
+P0052,Giày_52,Thời trang,Giày,Local Brand,2705000.0
+P0053,Giày_53,Thời trang,Giày,Nike,3629000.0
+P0054,Giày_54,Thời trang,Giày,Nike,748000.0
+P0055,Túi xách_55,Thời trang,Túi xách,Uniqlo,1823000.0
+P0056,Túi xách_56,Thời trang,Túi xách,Adidas,2859000.0
+P0057,Túi xách_57,Thời trang,Túi xách,Adidas,1257000.0
+P0058,Túi xách_58,Thời trang,Túi xách,Uniqlo,3598000.0
+P0059,Túi xách_59,Thời trang,Túi xách,,1299000.0
+P0060,Phụ kiện TT_60,Thời trang,Phụ kiện TT,H&M,103000.0
+P0061,Phụ kiện TT_61,Thời trang,Phụ kiện TT,Zara,259000.0
+P0062,Phụ kiện TT_62,Thời trang,Phụ kiện TT,Nike,211000.0
+P0063,Phụ kiện TT_63,Thời trang,Phụ kiện TT,Zara,593000.0
+P0064,Nhà bếp_64,Gia dụng,Nhà bếp,LG,2416000.0
+P0065,Nhà bếp_65,Gia dụng,Nhà bếp,Generic,2418000.0
+P0066,Nhà bếp_66,Gia dụng,Nhà bếp,Panasonic,1033000.0
+P0067,Nhà bếp_67,Gia dụng,Nhà bếp,Samsung,3329000.0
+P0068,Nhà bếp_68,Gia dụng,Nhà bếp,Sony,2176000.0
+P0069,Nhà bếp_69,Gia dụng,Nhà bếp,Panasonic,4333000.0
+P0070,Nhà bếp_70,Gia dụng,Nhà bếp,Samsung,3399000.0
+P0071,Nhà bếp_71,Gia dụng,Nhà bếp,Local Brand,582000.0
+P0072,Nội thất_72,Gia dụng,Nội thất,Local Brand,5420000.0
+P0073,Nội thất_73,Gia dụng,Nội thất,,2084000.0
+P0074,Nội thất_74,Gia dụng,Nội thất,Xiaomi,3258000.0
+P0075,Nội thất_75,Gia dụng,Nội thất,Panasonic,2533000.0
+P0076,Nội thất_76,Gia dụng,Nội thất,Xiaomi,4539000.0
+P0077,Nội thất_77,Gia dụng,Nội thất,Xiaomi,13180000.0
+P0078,Nội thất_78,Gia dụng,Nội thất,Samsung,6925000.0
+P0079,Đồ dùng_79,Gia dụng,Đồ dùng,Generic,564000.0
+P0080,Đồ dùng_80,Gia dụng,Đồ dùng,Samsung,663000.0
+P0081,Đồ dùng_81,Gia dụng,Đồ dùng,LG,841000.0
+P0082,Đồ dùng_82,Gia dụng,Đồ dùng,Samsung,929000.0
+P0083,Đồ dùng_83,Gia dụng,Đồ dùng,Generic,259000.0
+P0084,Đồ dùng_84,Gia dụng,Đồ dùng,Panasonic,501000.0
+P0085,Đồ dùng_85,Gia dụng,Đồ dùng,Xiaomi,869000.0
+P0086,Đồ dùng_86,Gia dụng,Đồ dùng,Samsung,190000.0
+P0087,Đồ dùng_87,Gia dụng,Đồ dùng,Samsung,986000.0
+P0088,Đồ dùng_88,Gia dụng,Đồ dùng,Sony,929000.0
+P0089,Trang trí_89,Gia dụng,Trang trí,Panasonic,606000.0
+P0090,Trang trí_90,Gia dụng,Trang trí,Local Brand,1917000.0
+P0091,Trang trí_91,Gia dụng,Trang trí,Generic,1134000.0
+P0092,Trang trí_92,Gia dụng,Trang trí,Local Brand,999000.0
+P0093,Trang trí_93,Gia dụng,Trang trí,Xiaomi,629000.0
+P0094,Trang trí_94,Gia dụng,Trang trí,Samsung,1179000.0
+P0095,Trang trí_95,Gia dụng,Trang trí,LG,169000.0
+P0096,Trang trí_96,Gia dụng,Trang trí,Sony,161000.0
+P0097,Trang trí_97,Gia dụng,Trang trí,LG,980000.0
+P0098,Trang trí_98,Gia dụng,Trang trí,Generic,1086000.0
+P0099,Đồ uống_99,Thực phẩm,Đồ uống,,172000.0
+P0100,Đồ uống_100,Thực phẩm,Đồ uống,Vinamilk,123000.0
+P0101,Đồ uống_101,Thực phẩm,Đồ uống,,87000.0
+P0102,Đồ uống_102,Thực phẩm,Đồ uống,TH True,120000.0
+P0103,Bánh kẹo_103,Thực phẩm,Bánh kẹo,Vinamilk,134000.0
+P0104,Bánh kẹo_104,Thực phẩm,Bánh kẹo,Local Brand,281000.0
+P0105,Bánh kẹo_105,Thực phẩm,Bánh kẹo,TH True,206000.0
+P0106,Bánh kẹo_106,Thực phẩm,Bánh kẹo,Local Brand,83000.0
+P0107,Thực phẩm khô_107,Thực phẩm,Thực phẩm khô,TH True,342000.0
+P0108,Thực phẩm khô_108,Thực phẩm,Thực phẩm khô,Local Brand,239000.0
+P0109,Thực phẩm khô_109,Thực phẩm,Thực phẩm khô,Vinamilk,24000.0
+P0110,Thực phẩm khô_110,Thực phẩm,Thực phẩm khô,Vinamilk,55000.0
+P0111,Thực phẩm khô_111,Thực phẩm,Thực phẩm khô,TH True,263000.0
+P0112,Thực phẩm khô_112,Thực phẩm,Thực phẩm khô,TH True,468000.0
+P0113,Thực phẩm khô_113,Thực phẩm,Thực phẩm khô,Vinamilk,442000.0
+P0114,Đồ hộp_114,Thực phẩm,Đồ hộp,Local Brand,36000.0
+P0115,Đồ hộp_115,Thực phẩm,Đồ hộp,Local Brand,98000.0
+P0116,Đồ hộp_116,Thực phẩm,Đồ hộp,Vinamilk,105000.0
+P0117,Đồ hộp_117,Thực phẩm,Đồ hộp,Local Brand,141000.0
+P0118,Đồ hộp_118,Thực phẩm,Đồ hộp,Vinamilk,142000.0
+P0119,Đồ hộp_119,Thực phẩm,Đồ hộp,TH True,51000.0
+P0120,Sách_120,Sách & VPP,Sách,Generic,158000.0
+P0121,Sách_121,Sách & VPP,Sách,Generic,367000.0
+P0122,Sách_122,Sách & VPP,Sách,Generic,353000.0
+P0123,Sách_123,Sách & VPP,Sách,Fahasa,268000.0
+P0124,Văn phòng phẩm_124,Sách & VPP,Văn phòng phẩm,Generic,23000.0
+P0125,Văn phòng phẩm_125,Sách & VPP,Văn phòng phẩm,Fahasa,167000.0
+P0126,Văn phòng phẩm_126,Sách & VPP,Văn phòng phẩm,Generic,6000.0
+P0127,Văn phòng phẩm_127,Sách & VPP,Văn phòng phẩm,Generic,129000.0
+P0128,Văn phòng phẩm_128,Sách & VPP,Văn phòng phẩm,Fahasa,37000.0
+P0129,Văn phòng phẩm_129,Sách & VPP,Văn phòng phẩm,,113000.0
+P0130,Đồ chơi giáo dục_130,Sách & VPP,Đồ chơi giáo dục,Generic,134000.0
+P0131,Đồ chơi giáo dục_131,Sách & VPP,Đồ chơi giáo dục,Generic,459000.0
+P0132,Đồ chơi giáo dục_132,Sách & VPP,Đồ chơi giáo dục,Fahasa,487000.0
+P0133,Đồ chơi giáo dục_133,Sách & VPP,Đồ chơi giáo dục,Generic,372000.0
+P0134,Đồ chơi giáo dục_134,Sách & VPP,Đồ chơi giáo dục,Generic,281000.0
+P0135,Đồ chơi giáo dục_135,Sách & VPP,Đồ chơi giáo dục,Generic,724000.0
+P0136,Đồ chơi giáo dục_136,Sách & VPP,Đồ chơi giáo dục,Generic,562000.0
+P0137,Chăm sóc da_137,Mỹ phẩm,Chăm sóc da,Innisfree,759000.0
+P0138,Chăm sóc da_138,Mỹ phẩm,Chăm sóc da,Local Brand,1778000.0
+P0139,Chăm sóc da_139,Mỹ phẩm,Chăm sóc da,LOréal,1950000.0
+P0140,Chăm sóc da_140,Mỹ phẩm,Chăm sóc da,Local Brand,377000.0
+P0141,Chăm sóc da_141,Mỹ phẩm,Chăm sóc da,Innisfree,1740000.0
+P0142,Chăm sóc da_142,Mỹ phẩm,Chăm sóc da,Innisfree,1772000.0
+P0143,Chăm sóc da_143,Mỹ phẩm,Chăm sóc da,Innisfree,424000.0
+P0144,Chăm sóc da_144,Mỹ phẩm,Chăm sóc da,LOréal,1582000.0
+P0145,Chăm sóc da_145,Mỹ phẩm,Chăm sóc da,LOréal,1620000.0
+P0146,Trang điểm_146,Mỹ phẩm,Trang điểm,,1226000.0
+P0147,Trang điểm_147,Mỹ phẩm,Trang điểm,LOréal,281000.0
+P0148,Trang điểm_148,Mỹ phẩm,Trang điểm,Local Brand,207000.0
+P0149,Trang điểm_149,Mỹ phẩm,Trang điểm,Innisfree,1295000.0
+P0150,Trang điểm_150,Mỹ phẩm,Trang điểm,Innisfree,339000.0
