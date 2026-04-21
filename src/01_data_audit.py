@@ -1,66 +1,242 @@
-import pandas as pd
-from pathlib import Path
-
-RAW_DIR = Path("../data/raw")
-
-files = {
-    "customers": "customers.csv",
-    "transactions": "transactions.csv",
-    "transaction_items": "transaction_items.csv",
-    "products": "products.csv",
-    "customer_support": "customer_support.csv",
-    "marketing_touchpoints": "marketing_touchpoints.csv",
-    "stores": "stores.csv",
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "8b0c8841",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "=== customers ===\n",
+      "shape: (800, 6)\n",
+      "  customer_id gender  birth_year       city registration_date  \\\n",
+      "0      C00001      F      1979.0  Hải Phòng        2024-05-24   \n",
+      "1      C00002      M      1990.0   Biên Hòa        2025-04-06   \n",
+      "2      C00003      F      1987.0        NaN        2023-08-11   \n",
+      "\n",
+      "  acquisition_channel  \n",
+      "0            Facebook  \n",
+      "1            Referral  \n",
+      "2              Shopee  \n",
+      "customer_id             object\n",
+      "gender                  object\n",
+      "birth_year             float64\n",
+      "city                    object\n",
+      "registration_date       object\n",
+      "acquisition_channel     object\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "customer_id            0.000\n",
+      "gender                 0.054\n",
+      "birth_year             0.050\n",
+      "city                   0.050\n",
+      "registration_date      0.020\n",
+      "acquisition_channel    0.050\n",
+      "dtype: float64\n",
+      "\n",
+      "=== transactions ===\n",
+      "shape: (3500, 6)\n",
+      "  transaction_id customer_id transaction_date store_id payment_method  \\\n",
+      "0        T000001      C00301       2025-01-01     S018  Bank Transfer   \n",
+      "1        T000002      C00109       2026-01-07     S014          VNPay   \n",
+      "2        T000003      C00008       2024-11-29     S007        ZaloPay   \n",
+      "\n",
+      "   discount_applied  \n",
+      "0               0.2  \n",
+      "1               0.0  \n",
+      "2               0.0  \n",
+      "transaction_id       object\n",
+      "customer_id          object\n",
+      "transaction_date     object\n",
+      "store_id             object\n",
+      "payment_method       object\n",
+      "discount_applied    float64\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "transaction_id      0.000\n",
+      "customer_id         0.000\n",
+      "transaction_date    0.000\n",
+      "store_id            0.000\n",
+      "payment_method      0.054\n",
+      "discount_applied    0.047\n",
+      "dtype: float64\n",
+      "\n",
+      "=== transaction_items ===\n",
+      "shape: (7740, 4)\n",
+      "  transaction_id product_id  quantity  unit_price\n",
+      "0        T000001      P0107       5.0    342000.0\n",
+      "1        T000002      P0028       4.0   4673000.0\n",
+      "2        T000002      P0007      10.0  13039000.0\n",
+      "transaction_id     object\n",
+      "product_id         object\n",
+      "quantity          float64\n",
+      "unit_price        float64\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "transaction_id    0.000\n",
+      "product_id        0.000\n",
+      "quantity          0.049\n",
+      "unit_price        0.051\n",
+      "dtype: float64\n",
+      "\n",
+      "=== products ===\n",
+      "shape: (150, 6)\n",
+      "  product_id  product_name category sub_category      brand  base_price\n",
+      "0      P0001  Điện thoại_1  Điện tử   Điện thoại  Panasonic  11422000.0\n",
+      "1      P0002  Điện thoại_2  Điện tử   Điện thoại      Apple  10310000.0\n",
+      "2      P0003  Điện thoại_3  Điện tử   Điện thoại     Xiaomi   9410000.0\n",
+      "product_id       object\n",
+      "product_name     object\n",
+      "category         object\n",
+      "sub_category     object\n",
+      "brand            object\n",
+      "base_price      float64\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "product_id      0.00\n",
+      "product_name    0.00\n",
+      "category        0.00\n",
+      "sub_category    0.00\n",
+      "brand           0.06\n",
+      "base_price      0.00\n",
+      "dtype: float64\n",
+      "\n",
+      "=== stores ===\n",
+      "shape: (25, 5)\n",
+      "  store_id store_name       city store_type opened_date\n",
+      "0     S001   Store_A1     TP.HCM     online  2023-08-02\n",
+      "1     S002   Store_A2    Thủ Đức     online  2020-02-21\n",
+      "2     S003   Store_A3  Hải Phòng     online  2021-07-17\n",
+      "store_id       object\n",
+      "store_name     object\n",
+      "city           object\n",
+      "store_type     object\n",
+      "opened_date    object\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "store_id       0.0\n",
+      "store_name     0.0\n",
+      "city           0.0\n",
+      "store_type     0.0\n",
+      "opened_date    0.0\n",
+      "dtype: float64\n",
+      "\n",
+      "=== customer_support ===\n",
+      "shape: (700, 7)\n",
+      "  ticket_id customer_id created_date       channel            issue_type  \\\n",
+      "0   TK00001      C00737   2025-05-05      Facebook        Giao hàng chậm   \n",
+      "1   TK00002      C00702   2025-03-28  Tại cửa hàng  Khiếu nại chất lượng   \n",
+      "2   TK00003      C00701   2025-01-08          Zalo               Đổi trả   \n",
+      "\n",
+      "    resolution_status  satisfaction_score  \n",
+      "0  Closed - No Action                 2.0  \n",
+      "1             Pending                 NaN  \n",
+      "2            Resolved                 3.0  \n",
+      "ticket_id              object\n",
+      "customer_id            object\n",
+      "created_date           object\n",
+      "channel                object\n",
+      "issue_type             object\n",
+      "resolution_status      object\n",
+      "satisfaction_score    float64\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "ticket_id             0.000\n",
+      "customer_id           0.000\n",
+      "created_date          0.000\n",
+      "channel               0.041\n",
+      "issue_type            0.060\n",
+      "resolution_status     0.000\n",
+      "satisfaction_score    0.289\n",
+      "dtype: float64\n",
+      "\n",
+      "=== marketing_touchpoints ===\n",
+      "shape: (1800, 8)\n",
+      "  campaign_id customer_id   sent_date            channel   campaign_type  \\\n",
+      "0      MKT002      C00067  2026-01-20                SMS  Loyalty Reward   \n",
+      "1      MKT003      C00445  2024-12-10  Push Notification  Loyalty Reward   \n",
+      "2      MKT004      C00569  2023-10-11                NaN     New Product   \n",
+      "\n",
+      "  is_opened is_clicked  offer_value  \n",
+      "0         0          0      30000.0  \n",
+      "1         0          0       5000.0  \n",
+      "2         0          0      20000.0  \n",
+      "campaign_id       object\n",
+      "customer_id       object\n",
+      "sent_date         object\n",
+      "channel           object\n",
+      "campaign_type     object\n",
+      "is_opened         object\n",
+      "is_clicked        object\n",
+      "offer_value      float64\n",
+      "dtype: object\n",
+      "missing (%):\n",
+      "campaign_id      0.000\n",
+      "customer_id      0.000\n",
+      "sent_date        0.008\n",
+      "channel          0.056\n",
+      "campaign_type    0.000\n",
+      "is_opened        0.051\n",
+      "is_clicked       0.049\n",
+      "offer_value      0.052\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "PATH = \"../data/raw/\"\n",
+    "\n",
+    "customers = pd.read_csv(PATH + \"customers.csv\")\n",
+    "transactions = pd.read_csv(PATH + \"transactions.csv\")\n",
+    "transaction_items = pd.read_csv(PATH + \"transaction_items.csv\")\n",
+    "products = pd.read_csv(PATH + \"products.csv\")\n",
+    "stores = pd.read_csv(PATH + \"stores.csv\")\n",
+    "customer_support = pd.read_csv(PATH + \"customer_support.csv\")\n",
+    "marketing = pd.read_csv(PATH + \"marketing_touchpoints.csv\")\n",
+    "\n",
+    "def quick_audit(df, name):\n",
+    "    print(f\"\\n=== {name} ===\")\n",
+    "    print(\"shape:\", df.shape)\n",
+    "    print(df.head(3))\n",
+    "    print(df.dtypes)\n",
+    "    print(\"missing (%):\")\n",
+    "    print(df.isna().mean().round(3))\n",
+    "\n",
+    "quick_audit(customers, \"customers\")\n",
+    "quick_audit(transactions, \"transactions\")\n",
+    "quick_audit(transaction_items, \"transaction_items\")\n",
+    "quick_audit(products, \"products\")\n",
+    "quick_audit(stores, \"stores\")\n",
+    "quick_audit(customer_support, \"customer_support\")\n",
+    "quick_audit(marketing, \"marketing_touchpoints\")"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "base",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
 }
-
-def load_data():
-    dfs = {}
-    for name, filename in files.items():
-        path = RAW_DIR / filename
-        df = pd.read_csv(path, na_values=["", "NA", "N/A", "-", ".", "null", "NULL"])
-        dfs[name] = df
-    return dfs
-
-def audit_df(name, df):
-    print("=" * 80)
-    print(f"{name.upper()}")
-    print("=" * 80)
-    print(f"Shape: {df.shape}")
-    print("\nColumns:")
-    print(df.columns.tolist())
-
-    print("\nDtypes:")
-    print(df.dtypes)
-
-    print("\nMissing values:")
-    print(df.isna().sum().sort_values(ascending=False))
-
-    print("\nMissing rate (%):")
-    print((df.isna().mean() * 100).round(2).sort_values(ascending=False))
-
-    print("\nDuplicate rows:", df.duplicated().sum())
-
-    print("\nSample rows:")
-    print(df.head(3))
-
-    print("\nNumeric summary:")
-    num_cols = df.select_dtypes(include=["number"]).columns
-    if len(num_cols) > 0:
-        print(df[num_cols].describe().T)
-    else:
-        print("No numeric columns.")
-
-    print("\nCategorical summary:")
-    cat_cols = df.select_dtypes(include="object").columns
-    if len(cat_cols) > 0:
-        print(df[cat_cols].describe().T)
-    else:
-        print("No categorical columns.")
-
-def main():
-    dfs = load_data()
-    for name, df in dfs.items():
-        audit_df(name, df)
-
-if __name__ == "__main__":
-    main()
