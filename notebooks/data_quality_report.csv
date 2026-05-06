@@ -1,0 +1,34 @@
+table,column,issue_type,count,pct,detail
+transactions,payment_method,Missing,189,5.4%,189 giá trị NULL
+transactions,discount_applied,Missing,165,4.7%,165 giá trị NULL
+transactions,payment_method,Invalid categorical value,49,1.4%,"Giá trị lạ: {'Unknown': 27, '???': 22}"
+transaction_items,quantity,Missing,383,4.9%,383 giá trị NULL
+transaction_items,unit_price,Missing,396,5.1%,396 giá trị NULL
+transaction_items,quantity,Outlier (±3σ),82,1.1%,"min=-5, max=50, mean=3"
+transaction_items,unit_price,Outlier (±3σ),134,1.7%,"min=6,000, max=28,089,000, mean=2,957,285"
+transaction_items,quantity,Negative value,41,0.5%,41 giá trị âm (không hợp lệ)
+products,brand,Missing,9,6.0%,9 giá trị NULL
+products,base_price,Outlier (±3σ),3,2.0%,"min=6,000, max=28,089,000, mean=2,943,587"
+marketing_touchpoints,sent_date,Missing,15,0.8%,15 giá trị NULL
+marketing_touchpoints,channel,Missing,101,5.6%,101 giá trị NULL
+marketing_touchpoints,is_opened,Missing,92,5.1%,92 giá trị NULL
+marketing_touchpoints,is_clicked,Missing,88,4.9%,88 giá trị NULL
+marketing_touchpoints,offer_value,Missing,93,5.2%,93 giá trị NULL
+marketing_touchpoints,['campaign_id'],Duplicate PK,1750,97.2%,1750 dòng trùng khóa chính
+marketing_touchpoints,sent_date,Wrong date format,35,1.9%,35 giá trị không parse được thành ngày
+marketing_touchpoints,offer_value,Outlier (±3σ),11,0.6%,"min=-50,000, max=500,000, mean=16,608"
+marketing_touchpoints,offer_value,Negative value,8,0.4%,8 giá trị âm (không hợp lệ)
+customers,gender,Missing,43,5.4%,43 giá trị NULL
+customers,birth_year,Missing,40,5.0%,40 giá trị NULL
+customers,city,Missing,40,5.0%,40 giá trị NULL
+customers,registration_date,Missing,16,2.0%,16 giá trị NULL
+customers,acquisition_channel,Missing,40,5.0%,40 giá trị NULL
+customers,registration_date,Wrong date format,11,1.4%,11 giá trị không parse được thành ngày
+customers,birth_year,Outlier (±3σ),7,0.9%,"min=-1,985, max=19,990, mean=2,124"
+customers,birth_year,Negative value,3,0.4%,3 giá trị âm (không hợp lệ)
+customers,gender,Invalid categorical value,18,2.2%,"Giá trị lạ: {'Unknown': 8, '0': 6, 'X': 4}"
+customer_support,channel,Missing,29,4.1%,29 giá trị NULL
+customer_support,issue_type,Missing,42,6.0%,42 giá trị NULL
+customer_support,satisfaction_score,Missing,202,28.9%,202 giá trị NULL
+customer_support,satisfaction_score,Outlier (±3σ),3,0.4%,"min=-1, max=99, mean=4"
+customer_support,satisfaction_score,Negative value,3,0.4%,3 giá trị âm (không hợp lệ)

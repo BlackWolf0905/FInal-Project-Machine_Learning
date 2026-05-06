@@ -1,0 +1,26 @@
+store_id,store_name,city,store_type,opened_date,opened_date_clean
+S001,Store_A1,TP.HCM,online,2023-08-02,2023-08-02
+S002,Store_A2,Thủ Đức,online,2020-02-21,2020-02-21
+S003,Store_A3,Hải Phòng,online,2021-07-17,2021-07-17
+S004,Store_A4,Đà Nẵng,online,2021-04-02,2021-04-02
+S005,Store_A5,Buôn Ma Thuột,online,2020-07-28,2020-07-28
+S006,Store_A6,TP.HCM,offline,2023-01-21,2023-01-21
+S007,Store_A7,Hà Nội,online,2020-03-06,2020-03-06
+S008,Store_A8,Hải Phòng,online,2021-03-23,2021-03-23
+S009,Store_A9,Hải Phòng,offline,2023-02-23,2023-02-23
+S010,Store_B0,Huế,offline,2021-03-27,2021-03-27
+S011,Store_B1,Đà Nẵng,offline,2020-01-14,2020-01-14
+S012,Store_B2,Cần Thơ,online,2021-11-27,2021-11-27
+S013,Store_B3,Biên Hòa,online,2021-03-16,2021-03-16
+S014,Store_B4,Nha Trang,online,2020-07-08,2020-07-08
+S015,Store_B5,Biên Hòa,offline,2022-01-05,2022-01-05
+S016,Store_B6,Thủ Đức,offline,2020-03-29,2020-03-29
+S017,Store_B7,TP.HCM,offline,2023-01-03,2023-01-03
+S018,Store_B8,Bắc Ninh,offline,2020-06-10,2020-06-10
+S019,Store_B9,Vũng Tàu,offline,2023-07-11,2023-07-11
+S020,Store_C0,Hải Phòng,online,2023-03-28,2023-03-28
+S021,Store_C1,Buôn Ma Thuột,online,2020-04-03,2020-04-03
+S022,Store_C2,TP.HCM,online,2021-08-15,2021-08-15
+S023,Store_C3,Nha Trang,offline,2020-07-25,2020-07-25
+S024,Store_C4,Buôn Ma Thuột,offline,2022-07-17,2022-07-17
+S025,Store_C5,Biên Hòa,offline,2020-11-29,2020-11-29

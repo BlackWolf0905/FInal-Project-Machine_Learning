@@ -1,0 +1,175 @@
+# 1. Giới thiệu & Mục tiêu
+
+- Bối cảnh bài toán: hệ thống bán lẻ đa kênh, nhiều bảng dữ liệu (customers, transactions, transaction_items, products, stores, customer_support, marketing_touchpoints).
+- Mục tiêu: xây dựng mô hình dự đoán khả năng khách hàng sẽ quay lại mua trong 30 ngày tiếp theo (biến mục tiêu `will_return_within_30_days`), từ đó hỗ trợ marketing/CRM tối ưu chiến dịch chăm sóc khách.
+
+# 2. Khám phá & Hiểu dữ liệu (EDA)
+
+## 2.1. Tổng quan các bảng dữ liệu
+
+- Mô tả ngắn từng file: số dòng, số cột, key chính (customer_id, transaction_id, product_id, store_id, campaign_id).
+- Mối quan hệ giữa các bảng (ERD logic): customers ↔ transactions ↔ transaction_items ↔ products, transactions ↔ stores, customers ↔ customer_support, customers ↔ marketing_touchpoints.
+
+## 2.2. EDA chi tiết theo bảng
+
+- customers: phân bố giới tính, năm sinh, thành phố, kênh acquisition.
+- transactions & transaction_items: phân bố số giao dịch theo thời gian, giá trị đơn hàng, số lượng sản phẩm.
+- products & stores: phân bố category, brand, loại cửa hàng.
+- customer_support: số ticket theo trạng thái, kênh hỗ trợ, distribution satisfaction_score.
+- marketing_touchpoints: số campaign theo kênh, tỷ lệ mở/click.
+- Các biểu đồ chính và insight rút ra (ví dụ: mùa cao điểm mua, nhóm khách trẻ/già, hành vi theo city).
+
+# 3. Làm sạch dữ liệu (Data Cleaning)
+
+## 3.1. Xử lý missing values
+
+- Tóm tắt tỷ lệ thiếu theo cột.
+- Chiến lược với từng nhóm biến:
+  - Thông tin nhân khẩu học (gender, city, acquisition_channel, birth_year).
+  - Thông tin giao dịch (transaction_date, quantity, unit_price, discount_applied).
+  - Dữ liệu support (resolution_status, satisfaction_score).
+  - Dữ liệu marketing (sent_date, is_opened, is_clicked, offer_value).
+- Giải thích lý do chọn drop/impute (ví dụ: fill "Unknown", median, tạo flag missing).
+
+## 3.2. Xử lý outlier & giá trị không hợp lệ
+
+- Rule phát hiện sai: quantity <= 0, unit_price <= 0, satisfaction_score ngoài khoảng [1,5], birth_year bất hợp lý, discount_applied ngoài khoảng cho phép.
+- Chuẩn hóa giá trị categorical lạ: gender, payment_method, channel, is_opened/is_clicked.
+- Chuẩn hóa format ngày (registration_date, transaction_date, sent_date, created_date).
+
+## 3.3. Kiểm tra tính nhất quán logic
+
+- Các rule logic: is_clicked không thể = 1 nếu is_opened = 0; ticket Pending thì không có satisfaction_score; transaction_date không trước registration_date.
+- Cách xử lý các bản ghi vi phạm (sửa, loại bỏ, hoặc gắn cờ).
+
+# 4. Tích hợp dữ liệu (Data Integration)
+
+## 4.1. Xây dựng bảng giao dịch chuẩn
+
+- Tính `gross_amount` = SUM(quantity × unit_price) từ transaction_items.
+- Kết hợp với transactions và discount_applied để tính `total_amount`.
+- Giải thích giả định về discount (tỷ lệ/giá trị).
+
+## 4.2. Kết hợp các bảng về customer-level
+
+- Chọn customers làm bảng gốc, LEFT JOIN các aggregate từ transactions, customer_support, marketing_touchpoints.
+- Lý do dùng LEFT JOIN (giữ khách không có giao dịch/support/campaign).
+- Lưu bảng intermediate: transactions_enriched, customer_features_base, customer_features_full.
+
+# 5. Feature Engineering
+
+## 5.1. Nhóm RFM
+
+- Recency: số ngày từ lần mua gần nhất đến snapshot_date.
+- Frequency: số giao dịch.
+- Monetary: tổng `total_amount`, average order value, customer_lifetime_days.
+
+## 5.2. Hành vi mua hàng
+
+- Đa dạng danh mục: số category, số brand.
+- Brand/category yêu thích: favorite_brand, n_unique_categories/n_unique_brands.
+- Hành vi sử dụng khuyến mãi: discount_usage_rate, n_transactions, avg_item_price, avg_items_per_order (nếu có).
+
+## 5.3. Dữ liệu Customer Support
+
+- support_ticket_count, resolved_ticket_count, pending_ticket_count.
+- resolved_rate, avg_satisfaction.
+- days_since_last_ticket.
+
+## 5.4. Dữ liệu Marketing
+
+- campaign_count, total_emails.
+- total_open, total_click, open_rate, click_rate, ctr_given_open.
+- total_offer_value, days_since_last_campaign.
+
+## 5.5. Feature thời gian & hành vi mua theo thời gian
+
+- mean_interpurchase_days, std_interpurchase_days, last_interpurchase_gap.
+- favorite_dow (ngày trong tuần thường mua), favorite_month (tháng cao điểm).
+
+# 6. Xây dựng Target Label
+
+## 6.1. Định nghĩa biến mục tiêu
+
+- Label classification: `will_return_within_30_days`:
+  - 1 nếu khách có lần mua tiếp theo trong vòng 30 ngày sau lần mua gần nhất.
+  - 0 nếu không có lần mua tiếp theo trong khoảng này.
+
+## 6.2. Logic tính toán
+
+- Sắp xếp giao dịch theo customer_id, transaction_date.
+- Xác định last_purchase_date cho mỗi khách.
+- Tính days_until_next_purchase từ last_purchase_date đến giao dịch kế tiếp (nếu có).
+- Label = 1 nếu days_until_next_purchase ∈ [0,30], ngược lại 0.
+
+## 6.3. Xử lý censored data
+
+- Trường hợp khách chỉ mua 1 lần hoặc không thấy lần mua tiếp theo trong dữ liệu.
+- Cách xử lý (gán label 0 và thảo luận ý nghĩa thống kê).
+- Thảo luận hạn chế: cửa sổ quan sát hữu hạn, có thể đánh giá thấp khả năng quay lại của khách mới.
+
+# 7. Modeling & Đánh giá
+
+## 7.1. Train/Test split
+
+- Chia dữ liệu theo thời gian dựa trên last_purchase_date (ví dụ: 80% khách cũ cho train, 20% khách mới cho test).
+- Tránh random split để không rò rỉ thông tin tương lai.
+
+## 7.2. Mô hình & Hyperparameters
+
+- Logistic Regression:
+  - Mô tả: baseline tuyến tính, dễ diễn giải.
+  - Xử lý: chuẩn hóa feature, class_weight='balanced'.
+- Random Forest:
+  - Mô tả: mô hình ensemble phi tuyến, bắt được tương tác feature.
+  - Tham số chính: n_estimators, max_depth, min_samples_split, min_samples_leaf, class_weight.
+
+## 7.3. Kết quả & Metrics
+
+- Bảng so sánh:
+  - F1-score (macro/weighted).
+  - AUC-ROC.
+  - Precision, Recall.
+- Confusion matrix cho model chọn cuối cùng.
+- Nhận xét:
+  - Model nào tốt hơn, chênh lệch thế nào.
+  - Trade-off giữa precision và recall (ưu tiên bắt đúng khách quay lại hay tránh spam nhầm khách sẽ không quay lại).
+
+# 8. Feature Importance & Insight Kinh doanh
+
+## 8.1. Feature Importance
+
+- Trình bày top N feature quan trọng từ Random Forest.
+- Nhóm feature chính: RFM, marketing, support, thời gian.
+
+## 8.2. Phân tích insight
+
+- Recency/frequency/monetary ảnh hưởng thế nào đến khả năng quay lại.
+- Ảnh hưởng của open_rate/click_rate/campaign_count: khách tương tác nhiều với marketing có xu hướng quay lại cao hơn không.
+- Vai trò của support: khách có nhiều ticket unresolved có xu hướng rời bỏ hơn không.
+- Ảnh hưởng của interpurchase_days và favorite_dow/month (chu kỳ mua).
+
+## 8.3. Đề xuất hành động
+
+- Nhóm khách recency thấp nhưng frequency & monetary cao → ưu tiên chiến dịch giữ chân trong 7–14 ngày.
+- Nhóm có open_rate/click_rate cao nhưng chưa quay lại → gửi offer cá nhân hóa mạnh hơn.
+- Nhóm nhiều ticket unresolved hoặc satisfaction thấp → ưu tiên xử lý support trước khi remarketing.
+
+# 9. Kết luận, Hạn chế & Hướng phát triển
+
+## 9.1. Kết luận chính
+
+- Tóm tắt model tốt nhất và hiệu quả (F1, AUC).
+- Tóm tắt 2–3 insight quan trọng nhất về hành vi khách hàng.
+
+## 9.2. Hạn chế
+
+- Dữ liệu mô phỏng, chưa phản ánh đầy đủ thực tế.
+- Chưa xử lý đầy đủ bài toán survival (thời gian tới sự kiện) cho censored data.
+- Chưa thử nhiều mô hình nâng cao khác (XGBoost, LightGBM, time-series CV).
+
+## 9.3. Hướng phát triển
+
+- Bổ sung thêm dữ liệu hành vi web/app (pageview, session).
+- Dùng survival analysis hoặc time-to-event modeling.
+- Triển khai A/B test campaign dựa trên phân khúc model gợi ý và đo lường uplift thực tế.
